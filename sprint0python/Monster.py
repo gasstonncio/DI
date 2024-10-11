@@ -1,5 +1,3 @@
-from Hero import *
-
 class Monster:
     def __init__(self,name,attack,defense,health):
 

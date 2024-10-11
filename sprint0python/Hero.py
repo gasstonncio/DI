@@ -2,7 +2,7 @@ from random import randrange
 
 
 class Hero:
-    def __init__(self,name):
+    def __init__(self,name,attack,defense,health,max_health):
         """
         En esta clase se recogen los atributos de nuestro jugador (El heroe),
         con el que nos enfrentaremos a los retos del juego y lucharemos por
