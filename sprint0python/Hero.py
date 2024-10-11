@@ -21,7 +21,7 @@ class Hero:
         """
         self.name=name
         self.attack=randrange(20,35,3)
-        self.defense=randrange(10,35,5)
+        self.armor=randrange(10, 35, 5)
         self.health=100
         self.max_health=100
 
@@ -30,7 +30,7 @@ class Hero:
         Metodo que realiza un ataque del heroe a un objeto e la clase Monster.
         """
         print("Hero attacks ", monster.name)
-        damage=self.attack-monster.defense
+        damage=self.attack-monster.armor
 
         if damage > 0:
             print(f"Enemy {monster.name} has received {damage} damage points.")
@@ -44,27 +44,27 @@ class Hero:
         """
         if self.health<self.max_health:
             print(f"{self.name} is hurt!")
-            if self.health>81:
+            if self.health>=81:
                 self.health=self.max_health
-                print(f"{self.name} has healed. Current health: {self.health}")
             else:
                 self.health+=20
-                print(f"{self.name} has healed. Current health: {self.health}")
         else:
             print(f"{self.name} is in one piece!")
+
+        print(f"{self.name} has healed. Current health: {self.health}")
 
     def defense(self):
         """
         Metodo para aumentar la defensa del heroe
         """
-        self.defense+=5
-        print(f"{self.name} defends himself. Defense has temporarily increased to {self.defense}.")
+        self.armor+=5
+        print(f"{self.name} defends himself. Defense has temporarily increased to {self.armor}.")
 
     def reset_defense(self):
         """
         Metodo para resetear la defensa del heroe anteriormente aumentada
         """
-        self.defense-=5
+        self.armor-=5
         print(f"{self.name} defense has reset.")
 
     def alive(self):
@@ -72,6 +72,6 @@ class Hero:
         Metodo que nos dice la vida actual del heroe (si este esta vivo) o por otro lado si
         el heroe ha muerto nos devuelve un booleano = false
         """
-        return self.health<0
+        return self.health>0
 
 

@@ -22,7 +22,7 @@ class Treasure:
     @staticmethod
     def defense_increase(hero):
         #Metodo que representa un tesoro en forma de aumento de defensa del heroe
-        hero.defense+=10
+        hero.armor+=10
         print(f"{hero.name} has increased his defense.")
 
     @staticmethod
