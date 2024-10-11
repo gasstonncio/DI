@@ -1,6 +1,5 @@
 import random
 from random import randrange
-from Hero import Hero
 
 class Treasure:
     #Clase de tesoros posibles que puede encontrar el heroe tras derrotar a un monstruo
@@ -14,17 +13,20 @@ class Treasure:
         #Metodo para devolver una cantidad aleatoria de oro al metodo gold
         return randrange(50,350,50)
 
-    def attack_increase(self, hero):
+    @staticmethod
+    def attack_increase(hero):
         #Metodo que representa un tesoro en forma de aumento de daño del heroe
         hero.attack+=10
         print(f"{hero.name} has increased his attacking.")
 
-    def defense_increase(self, hero):
+    @staticmethod
+    def defense_increase(hero):
         #Metodo que representa un tesoro en forma de aumento de defensa del heroe
         hero.defense+=10
         print(f"{hero.name} has increased his defense.")
 
-    def healer(self, hero):
+    @staticmethod
+    def healer(hero):
         #Metodo que representa un tesoro en forma de curacion de la vida al maximo
         hero.health=hero.max_health
         print(f"{hero.name}")

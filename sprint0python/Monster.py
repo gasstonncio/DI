@@ -9,12 +9,12 @@ class Monster:
     def attacking(self, hero):
 
         print(f"The {self.name} attacks {hero.name}.")
-
-        if self.attack<=hero.defense:
-            print(f"{hero.name} has blocked the attack from the {self.name}!")
+        damage = self.attack - hero.defense
+        if damage > 0:
+            print(f"The {self.name} has hurt {hero.name} and knocked off {damage} health points.")
+            hero.health -= damage
         else:
-            print(f"The {self.name} has hurt {hero.name} and knocked off {hero.health-self.attack} health points.")
-            hero.health-=self.attack
+            print(f"{hero.name} has blocked the attack from the {self.name}!")
 
     def alive(self):
         return self.health>0
