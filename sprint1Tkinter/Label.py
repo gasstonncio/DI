@@ -20,7 +20,7 @@ etiqueta_bienvenida=tk.Label(root, text= "Bienvenid@!")
 etiqueta_bienvenida.pack()
 etiqueta_nombre=tk.Label(root, text="Gastón Caramés")
 etiqueta_nombre.pack()
-etiqueta_boton=tk.Button(root, text="Botón", command=cambiar_texto, bg="blue", fg="pink")
+etiqueta_boton=tk.Button(root, text="Botón", command=cambiar_texto, bg="blue", fg="white")
 etiqueta_boton.pack()
 
 etiqueta_bienvenida.pack()
