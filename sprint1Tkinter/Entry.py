@@ -5,7 +5,7 @@ def greet():
     e_resultado.config(text=f"Hola {entry.get()}!!")
     """
     Si descomentamos la siguiente linea de messagebox... cuando presionemos
-    el boton de la ventana nos saltará otra ventana con elmesnaje presonalizado.
+    el boton de la ventana nos saltará otra ventana con el mensaje presonalizado.
 
     También habría que desomentar el import de messagebox!!!
     """
