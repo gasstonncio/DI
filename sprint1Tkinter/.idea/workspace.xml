@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fa3c4bc2-4a10-4ffc-bd45-12887e6f8b38" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Checkbutton.py" beforeDir="false" afterPath="$PROJECT_DIR$/Checkbutton.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +39,7 @@
     "Python.Checkbutton.executor": "Run",
     "Python.Entry.executor": "Run",
     "Python.Label.executor": "Run",
+    "Python.Radiobutton.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
