@@ -35,6 +35,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.AppUsers.executor": "Run",
     "Python.Button.executor": "Run",
     "Python.Canvas.executor": "Run",
     "Python.Checkbutton.executor": "Run",
