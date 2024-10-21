@@ -48,6 +48,17 @@ root = tk.Tk()
 root.title("Ejercicio 12")
 root.geometry("400x400")  # Tamaño ajustado para que sea más compacto
 
+#Creamos menu principal
+menu_principal=tk.Menu(root)
+root.config(menu=menu_principal)
+
+#Menu de opciones en cascada
+menu_lista= tk.Menu(menu_principal, tearoff=0)
+menu_principal.add_cascade(label="Opciones", menu=menu_lista)
+menu_lista.add_command(label="Guardar lista")
+menu_lista.add_separator()
+menu_lista.add_command(label="Cargar lista")
+
 #Etiqueta y campo de entrada para el nombre
 et_nombre = tk.Label(root, text="Nombre:")
 et_nombre.grid(row=0, column=0, padx=10, pady=10, sticky='e')
@@ -106,17 +117,8 @@ scrollbar.config(command=listbox.yview)
 boton_eliminar=tk.Button(root, text="Eliminar registro", command=eliminar_registro)
 boton_eliminar.grid(row=5, column=0, columnspan=2, padx=10,pady=10)
 
-etiqueta_menu=tk.Label(root, text="Opciones para la lista")
-etiqueta_menu.grid(row=6, column=0, columnspan=1)
-
-menu_lista=tk.Menu(root)
-
-
-
 #Boton para salir de la ventana principal
 boton_salir=tk.Button(root, text="Salir", command=salir)
-boton_salir.grid(padx=0, pady=0)
-
-
+boton_salir.grid(row=9,padx=0, pady=0)
 
 root.mainloop()

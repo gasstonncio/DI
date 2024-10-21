@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fa3c4bc2-4a10-4ffc-bd45-12887e6f8b38" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppUsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/AppUsers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,26 +34,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.AppUsers.executor": "Run",
-    "Python.Button.executor": "Run",
-    "Python.Canvas.executor": "Run",
-    "Python.Checkbutton.executor": "Run",
-    "Python.Entry.executor": "Run",
-    "Python.Frame.executor": "Run",
-    "Python.Label.executor": "Run",
-    "Python.Listbox.executor": "Run",
-    "Python.Menu.executor": "Run",
-    "Python.Radiobutton.executor": "Run",
-    "Python.Scale.executor": "Run",
-    "Python.Scrollbar.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Clase/PyCharm/DI/sprint1Tkinter",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.AppUsers.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Button.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Canvas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Checkbutton.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Entry.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Frame.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Label.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Listbox.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Menu.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Radiobutton.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Scale.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Scrollbar.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Clase/PyCharm/DI/sprint1Tkinter&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
