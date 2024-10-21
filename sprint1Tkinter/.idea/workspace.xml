@@ -44,6 +44,7 @@
     "Python.Listbox.executor": "Run",
     "Python.Menu.executor": "Run",
     "Python.Radiobutton.executor": "Run",
+    "Python.Scale.executor": "Run",
     "Python.Scrollbar.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
