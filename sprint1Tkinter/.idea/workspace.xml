@@ -39,6 +39,7 @@
     "Python.Canvas.executor": "Run",
     "Python.Checkbutton.executor": "Run",
     "Python.Entry.executor": "Run",
+    "Python.Frame.executor": "Run",
     "Python.Label.executor": "Run",
     "Python.Listbox.executor": "Run",
     "Python.Radiobutton.executor": "Run",
