@@ -25,21 +25,21 @@ class GameModel:
         El tablero se genera con cartas duplicadas para que haya parejas.
         """
         if self.difficulty == "facil":
-            num_pairs = 6
-        elif self.difficulty == "medio":
             num_pairs = 8
+        elif self.difficulty == "medio":
+            num_pairs = 12
         elif self.difficulty == "dificil":
-            num_pairs = 10
+            num_pairs = 16
         else:
             raise ValueError("Dificultad no válida")
 
-        # Las cartas son valores duplicados (como una lista de pares)
+        #Las cartas son valores duplicados (como una lista de pares)
         self.card_values = [f"Card {i + 1}" for i in range(num_pairs)] * 2
         random.shuffle(self.card_values)
 
-        # Crear el tablero como una lista de listas (cuadrícula)
+        #Crear el tablero como una lista de listas (cuadrícula)
         self.board = []
-        size = int(len(self.card_values) ** 0.5)  # Asumimos que el tablero tiene forma cuadrada
+        size = int(len(self.card_values) ** 0.5)
         for i in range(size):
             row = self.card_values[i * size:(i + 1) * size]
             self.board.append(row)
