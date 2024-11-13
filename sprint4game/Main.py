@@ -9,27 +9,30 @@ class GameController:
         self.game_model = None
         self.game_view = None
 
-        #Crear el menú principal
+        # Crear el menú principal
         self.main_menu = MainMenu(root, self.start_game, self.show_stats, self.quit_game)
 
     def start_game(self, player_name, difficulty):
-        #Iniciar el modelo de juego con el nombre del jugador y la dificultad
+        # Iniciar el modelo de juego con el nombre del jugador y la dificultad
         self.game_model = GameModel(difficulty, player_name)
 
-        #Crear la vista del juego
-        self.game_view = GameView(self.on_card_click, self.update_move_count, self.update_time)
-
-        #Crear el tablero
-        self.game_view.create_board(self.game_model)
-
-        #Comenzar el temporizador
+        # Comenzar el temporizador
         self.game_model.start_timer()
 
-        #Ocultar el menú principal
+        # Crear la vista del juego
+        self.game_view = GameView(self.on_card_click, self.update_move_count, self.update_time_callback)
+
+        # Crear el tablero
+        self.game_view.create_board(self.game_model)
+
+        # Ocultar el menú principal
         self.main_menu.menu_window.pack_forget()
 
+        # Iniciar la actualización del temporizador
+        self.update_time_callback()
+
     def on_card_click(self, event, x, y):
-        #Lógica de selección de carta
+        # Lógica de selección de carta
         match = self.game_model.select_card(x, y)
 
         if match is not None:
@@ -45,18 +48,22 @@ class GameController:
             self.show_stats()
 
     def update_move_count(self, moves):
-        #Actualizar los movimientos en la vista
+        # Actualizar los movimientos en la vista
         self.game_view.update_move_count(moves)
 
-    def update_time(self, time):
-        #Actualizar el tiempo en la vista
-        self.game_view.update_time(time)
+    def update_time_callback(self):
+        # Actualizar el tiempo transcurrido en la vista
+        time_elapsed = self.game_model.get_time_elapsed()
+        self.game_view.update_time(time_elapsed)
+
+        # Llamar nuevamente a esta función después de 1000ms (1 segundo)
+        self.root.after(1000, self.update_time_callback)
 
     def show_stats(self):
-        #Mostrar las estadísticas
+        # Mostrar las estadísticas
         stats = self.game_model.load_scores()
-        self.game_view.destroy()
-        self.main_menu.show_stats(stats)
+        self.game_view.destroy()  # Destruir la vista actual del juego
+        self.main_menu.show_stats(stats)  # Mostrar estadísticas en el menú
 
     def quit_game(self):
         self.root.quit()
@@ -64,9 +71,12 @@ class GameController:
 
 def main():
     root = tk.Tk()
+    root.title("Juego de memoria")
+    root.geometry("720x480")
     app = GameController(root)
     root.mainloop()
 
 
 if __name__ == "__main__":
     main()
+

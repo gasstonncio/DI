@@ -27,14 +27,14 @@ class GameModel:
         if self.difficulty == "facil":
             num_pairs = 8
         elif self.difficulty == "medio":
-            num_pairs = 12
+            num_pairs = 18
         elif self.difficulty == "dificil":
-            num_pairs = 16
+            num_pairs = 32
         else:
             raise ValueError("Dificultad no válida")
 
         #Las cartas son valores duplicados (como una lista de pares)
-        self.card_values = [f"Card {i + 1}" for i in range(num_pairs)] * 2
+        self.card_values = [f"C{i + 1}" for i in range(num_pairs)] * 2
         random.shuffle(self.card_values)
 
         #Crear el tablero como una lista de listas (cuadrícula)
@@ -55,7 +55,7 @@ class GameModel:
         Retorna el tiempo transcurrido desde que comenzó el juego.
         """
         if self.start_time:
-            return round(time.time() - self.start_time, 2)
+            return round(time.time() - self.start_time, 1)
         return 0.0
 
     def select_card(self, i, j):
