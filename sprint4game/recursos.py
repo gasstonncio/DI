@@ -14,7 +14,7 @@ class Recursos:
         Las URLs de las cartas deben ser proporcionadas.
         """
         # URL de la carta boca abajo (la imagen que se usa cuando la carta está boca abajo)
-        self.carta_boca_abajo = self.download_image("https://example.com/carta_boca_abajo.png")
+        self.carta_boca_abajo = self.download_image("https://raw.githubusercontent.com/gasstonncio/DI/refs/heads/main/sprint4game/uno_card_back.png")
 
         # URLs de las cartas de juego (cambia estas URLs por las de tus cartas)
         for i in range(1, 33):  # Suponiendo que tienes hasta 32 cartas
