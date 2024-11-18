@@ -1,66 +1,55 @@
-from vista import GameView, MainMenu
+import tkinter as tk
+from tkinter import messagebox
+from vista import GameView
 from modelo import GameModel
+
 
 class GameController:
     def __init__(self, root, recursos):
         self.root = root
         self.recursos = recursos
-        self.game_model = None
+        self.game_model = GameModel()
         self.game_view = None
-        self.main_menu = MainMenu(root, self.start_game, self.show_stats, self.quit_game)
 
     def start_game(self, player_name, difficulty):
-        # Iniciar el modelo de juego con el nombre del jugador, la dificultad y los recursos
-        self.game_model = GameModel(difficulty, player_name, self.recursos)
+        """Inicia el juego con el nombre del jugador y la dificultad elegida."""
+        self.game_model.setup_game(player_name, difficulty)
 
-        # Comenzar el temporizador
-        self.game_model.start_timer()
+        # Crear una nueva ventana para el juego
+        game_window = tk.Toplevel(self.root)
+        game_window.title(f"Juego de Memoria - {player_name}")
 
-        # Crear la vista del juego
-        self.game_view = GameView(self.on_card_click, self.update_move_count, self.update_time_callback, self.recursos)
+        self.game_view = GameView(game_window, self.game_model, self.on_card_click, self.recursos)
+        self.game_view.update_board()
+        self.game_view.update_move_count(self.game_model.move_count)
 
-        # Crear el tablero
-        self.game_view.create_board()
-
-        # Ocultar el menú principal
-        self.main_menu.menu_window.pack_forget()
-
-        # Iniciar la actualización del temporizador
-        self.update_time_callback()
-
-    def on_card_click(self, event, x, y):
-        # Lógica de selección de carta
-        match = self.game_model.select_card(x, y)
-
-        if match is not None:
-            if match:
-                self.game_view.update_board((x, y), self.game_model.board[x][y])
-            else:
-                self.game_view.reset_cards(self.game_model.selected_cards[0], self.game_model.selected_cards[1])
-
-        self.update_move_count(self.game_model.moves)
-
-        if self.game_model.is_game_complete():
-            self.game_model.save_score()
-            self.show_stats()
-
-    def update_move_count(self, moves):
-        # Actualizar los movimientos en la vista
-        self.game_view.update_move_count(moves)
-
-    def update_time_callback(self):
-        # Actualizar el tiempo transcurrido en la vista
-        time_elapsed = self.game_model.get_time_elapsed()
-        self.game_view.update_time(time_elapsed)
-
-        # Llamar nuevamente a esta función después de 1000ms (1 segundo)
-        self.root.after(1000, self.update_time_callback)
+        # Iniciar el temporizador
+        self.game_view.start_timer()
 
     def show_stats(self):
-        # Mostrar las estadísticas
-        stats = self.game_model.load_scores()
-        self.game_view.destroy()  # Destruir la vista actual del juego
-        self.main_menu.show_stats(stats)  # Mostrar estadísticas en el menú
+        """Muestra las estadísticas del juego."""
+        stats_list = self.game_model.load_stats()
+        stats_str = "\n".join([f"{stat['player_name']} - Dificultad: {stat['difficulty']}, Movimientos: {stat['move_count']}, Tiempo: {stat['time_elapsed']}" for stat in stats_list])
+        messagebox.showinfo("Ranking de Jugadores", stats_str)
+
+    def on_card_click(self, x, y):
+        """Manejo de evento cuando el jugador hace clic en una carta."""
+        result = self.game_model.process_card_click(x, y)
+        if result == "hide_cards":
+            self.root.after(1000, self.hide_cards)
+        elif result == "game_over":
+            self.game_model.save_stats()
+            self.game_view.stop_timer()
+            messagebox.showinfo("¡Juego Terminado!", f"¡Felicidades {self.game_model.player_name}, has completado el juego en {self.game_model.time_elapsed} segundos con {self.game_model.move_count} movimientos!")
+            self.quit_game()
+        self.game_view.update_board()
+        self.game_view.update_move_count(self.game_model.move_count)
+
+    def hide_cards(self):
+        """Oculta las cartas después de un retraso."""
+        self.game_model.hide_cards()
+        self.game_view.update_board()
 
     def quit_game(self):
+        """Cierra el juego."""
         self.root.quit()
