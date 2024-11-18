@@ -1,24 +1,29 @@
 import tkinter as tk
-from controlador import GameController
 from recursos import Recursos
+from controlador import GameController
+from vista import MainMenu, GameView
 
 def main():
-    # Crear la ventana principal
+    # Crear la ventana principal de Tkinter
     root = tk.Tk()
-    root.title("Juego de Memoria")
-    root.geometry("720x480")
 
-    # Crear los recursos (imágenes de las cartas)
-    recursos = Recursos()
+    # Crear la instancia de Recursos
+    recursos = Recursos(root)
 
-    # Crear el controlador del juego
-    app = GameController(root, recursos)
+    # Crear el controlador de juego
+    controlador = GameController(recursos)
 
-    # Iniciar el bucle de eventos
+    # Crear la vista principal (menú)
+    menu = MainMenu(root, controlador.start_game, controlador.show_stats, root.quit)
+
+    # Ejecutar el bucle principal de Tkinter
     root.mainloop()
 
 if __name__ == "__main__":
     main()
+
+
+
 
 
 

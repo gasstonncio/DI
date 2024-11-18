@@ -2,26 +2,25 @@ from vista import GameView, MainMenu
 from modelo import GameModel
 
 class GameController:
-    def __init__(self, root):
+    def __init__(self, root, recursos):
         self.root = root
+        self.recursos = recursos
         self.game_model = None
         self.game_view = None
-
-        # Crear el menú principal
         self.main_menu = MainMenu(root, self.start_game, self.show_stats, self.quit_game)
 
     def start_game(self, player_name, difficulty):
-        # Iniciar el modelo de juego con el nombre del jugador y la dificultad
-        self.game_model = GameModel(difficulty, player_name)
+        # Iniciar el modelo de juego con el nombre del jugador, la dificultad y los recursos
+        self.game_model = GameModel(difficulty, player_name, self.recursos)
 
         # Comenzar el temporizador
         self.game_model.start_timer()
 
         # Crear la vista del juego
-        self.game_view = GameView(self.on_card_click, self.update_move_count, self.update_time_callback)
+        self.game_view = GameView(self.on_card_click, self.update_move_count, self.update_time_callback, self.recursos)
 
         # Crear el tablero
-        self.game_view.create_board(self.game_model)
+        self.game_view.create_board()
 
         # Ocultar el menú principal
         self.main_menu.menu_window.pack_forget()
