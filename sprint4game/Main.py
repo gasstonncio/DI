@@ -1,82 +1,24 @@
 import tkinter as tk
-from vista import MainMenu, GameView
-from modelo import GameModel
-
-
-class GameController:
-    def __init__(self, root):
-        self.root = root
-        self.game_model = None
-        self.game_view = None
-
-        # Crear el menú principal
-        self.main_menu = MainMenu(root, self.start_game, self.show_stats, self.quit_game)
-
-    def start_game(self, player_name, difficulty):
-        # Iniciar el modelo de juego con el nombre del jugador y la dificultad
-        self.game_model = GameModel(difficulty, player_name)
-
-        # Comenzar el temporizador
-        self.game_model.start_timer()
-
-        # Crear la vista del juego
-        self.game_view = GameView(self.on_card_click, self.update_move_count, self.update_time_callback)
-
-        # Crear el tablero
-        self.game_view.create_board(self.game_model)
-
-        # Ocultar el menú principal
-        self.main_menu.menu_window.pack_forget()
-
-        # Iniciar la actualización del temporizador
-        self.update_time_callback()
-
-    def on_card_click(self, event, x, y):
-        # Lógica de selección de carta
-        match = self.game_model.select_card(x, y)
-
-        if match is not None:
-            if match:
-                self.game_view.update_board((x, y), self.game_model.board[x][y])
-            else:
-                self.game_view.reset_cards(self.game_model.selected_cards[0], self.game_model.selected_cards[1])
-
-        self.update_move_count(self.game_model.moves)
-
-        if self.game_model.is_game_complete():
-            self.game_model.save_score()
-            self.show_stats()
-
-    def update_move_count(self, moves):
-        # Actualizar los movimientos en la vista
-        self.game_view.update_move_count(moves)
-
-    def update_time_callback(self):
-        # Actualizar el tiempo transcurrido en la vista
-        time_elapsed = self.game_model.get_time_elapsed()
-        self.game_view.update_time(time_elapsed)
-
-        # Llamar nuevamente a esta función después de 1000ms (1 segundo)
-        self.root.after(1000, self.update_time_callback)
-
-    def show_stats(self):
-        # Mostrar las estadísticas
-        stats = self.game_model.load_scores()
-        self.game_view.destroy()  # Destruir la vista actual del juego
-        self.main_menu.show_stats(stats)  # Mostrar estadísticas en el menú
-
-    def quit_game(self):
-        self.root.quit()
-
+from controlador import GameController
+from recursos import Recursos
 
 def main():
+    # Crear la ventana principal
     root = tk.Tk()
-    root.title("Juego de memoria")
+    root.title("Juego de Memoria")
     root.geometry("720x480")
-    app = GameController(root)
-    root.mainloop()
 
+    # Crear los recursos (imágenes de las cartas)
+    recursos = Recursos()
+
+    # Crear el controlador del juego
+    app = GameController(root, recursos)
+
+    # Iniciar el bucle de eventos
+    root.mainloop()
 
 if __name__ == "__main__":
     main()
+
+
 
