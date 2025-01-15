@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "675977139424",
+    "project_id": "segundotrimestredi",
+    "storage_bucket": "segundotrimestredi.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675977139424:android:e299367332f8c7bb712c85",
+        "android_client_info": {
+          "package_name": "com.example.sgundot_di"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZAwSDkdsufwykSsCxgyf6uxu0RoKK_0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
