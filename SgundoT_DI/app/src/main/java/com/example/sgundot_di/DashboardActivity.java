@@ -6,7 +6,11 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+<<<<<<< HEAD
 import android.widget.Toast;
+=======
+import android.util.Log;
+>>>>>>> 5403b93c5bba4ab7af512b47a19e70e6d85361ce
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +27,7 @@ public class DashboardActivity extends AppCompatActivity {
     private static final String TAG = "DashboardActivity";
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private static final String TAG = "DashboardActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +35,18 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         mAuth = FirebaseAuth.getInstance();
+<<<<<<< HEAD
         mDatabase = FirebaseDatabase.getInstance().getReference();
+=======
+        mDatabase = FirebaseDatabase.getInstance().getReference("juegos");
+>>>>>>> 5403b93c5bba4ab7af512b47a19e70e6d85361ce
 
         TextView titleTextView = findViewById(R.id.titleTextView);
         TextView descriptionTextView = findViewById(R.id.descriptionTextView);
         ImageView itemImageView = findViewById(R.id.itemImageView);
         Button logoutButton = findViewById(R.id.logoutButton);
 
+<<<<<<< HEAD
         // Mostrar que la actividad se ha iniciado
         Log.d(TAG, "Iniciando carga de datos desde Firebase");
 
@@ -86,15 +96,52 @@ public class DashboardActivity extends AppCompatActivity {
                     Log.e(TAG, "No se encontraron datos en Firebase");
                     Toast.makeText(DashboardActivity.this,
                             "No se encontraron datos", Toast.LENGTH_SHORT).show();
+=======
+        // Cambiamos a ValueEventListener para mejor manejo de datos
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "Data received: " + dataSnapshot.getValue());
+
+                // Intentamos obtener el primer elemento
+                for (DataSnapshot gameSnapshot : dataSnapshot.getChildren()) {
+                    Log.d(TAG, "Game data: " + gameSnapshot.getValue());
+
+                    String title = gameSnapshot.child("título").getValue(String.class);
+                    String description = gameSnapshot.child("descripción").getValue(String.class);
+                    String imageUrl = gameSnapshot.child("imagen").getValue(String.class);
+
+                    Log.d(TAG, "Title: " + title);
+                    Log.d(TAG, "Description: " + description);
+                    Log.d(TAG, "Image URL: " + imageUrl);
+
+                    if (title != null) titleTextView.setText(title);
+                    if (description != null) descriptionTextView.setText(description);
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        Picasso.get()
+                                .load(imageUrl)
+                                .fit()
+                                .centerCrop()
+                                .into(itemImageView);
+                    }
+
+                    // Solo necesitamos el primer elemento
+                    break;
+>>>>>>> 5403b93c5bba4ab7af512b47a19e70e6d85361ce
                 }
             }
 
             @Override
+<<<<<<< HEAD
             public void onCancelled(DatabaseError databaseError) {
                 Log.e(TAG, "Error al leer datos de Firebase", databaseError.toException());
                 Toast.makeText(DashboardActivity.this,
                         "Error al cargar los datos: " + databaseError.getMessage(),
                         Toast.LENGTH_SHORT).show();
+=======
+            public void onCancelled(DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+>>>>>>> 5403b93c5bba4ab7af512b47a19e70e6d85361ce
             }
         });
 

@@ -1,3 +1,5 @@
+
+
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
@@ -37,10 +39,16 @@ android {
 }
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.squareup.picasso:picasso:2.8")
     implementation("com.google.firebase:firebase-analytics")
+<<<<<<< HEAD
     implementation("com.squareup.picasso:picasso:2.71828")
 
+=======
+>>>>>>> 5403b93c5bba4ab7af512b47a19e70e6d85361ce
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
