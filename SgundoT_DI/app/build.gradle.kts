@@ -1,3 +1,5 @@
+
+
 plugins {
     id("com.google.gms.google-services")
     alias(libs.plugins.android.application)
@@ -37,13 +39,11 @@ android {
 }
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.squareup.picasso:picasso:2.8")
     implementation("com.google.firebase:firebase-analytics")
-
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
-
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
