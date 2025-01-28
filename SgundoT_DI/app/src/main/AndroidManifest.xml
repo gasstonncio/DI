@@ -11,11 +11,11 @@
         android:theme="@style/Theme.SgundoT_DI"
         tools:targetApi="31">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".data.views.RegisterActivity"
             android:exported="false"
             android:label="title_activity_login" />
         <activity
-            android:name=".MainActivity"
+            android:name=".data.views.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DashboardActivity"
+            android:name=".data.views.DashboardActivity"
             android:exported="false"/>
     </application>
 

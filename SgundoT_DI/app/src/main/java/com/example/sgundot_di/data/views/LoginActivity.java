@@ -1,4 +1,4 @@
-package com.example.sgundot_di;
+package com.example.sgundot_di.data.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,13 +7,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sgundot_di.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
@@ -38,18 +38,18 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
-                                Toast.makeText(MainActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+                                Toast.makeText(LoginActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                                 finish();
                             }
                         } else {
-                            Toast.makeText(MainActivity.this, "Error en autenticación: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Error en autenticación: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
         });
 
         registerTextView.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
     }
 }

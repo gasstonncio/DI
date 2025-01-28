@@ -1,4 +1,4 @@
-package com.example.sgundot_di;
+package com.example.sgundot_di.data.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sgundot_di.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -56,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnCompleteListener(dbTask -> {
                                         if (dbTask.isSuccessful()) {
                                             Toast.makeText(RegisterActivity.this, "Registro exitoso.", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                             finish();
                                         } else {
                                             Toast.makeText(RegisterActivity.this, "Error al guardar los datos del usuario.", Toast.LENGTH_SHORT).show();
