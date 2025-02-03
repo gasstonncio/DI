@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.example.sgundot_di.R;
 
 public class DetailActivity extends AppCompatActivity {
@@ -30,8 +30,10 @@ public class DetailActivity extends AppCompatActivity {
 
         titleTextView.setText(titulo);
         descriptionTextView.setText(descripcion);
-        Glide.with(this)
+        Picasso.get()
                 .load(imagen)
+                .fit()
+                .centerCrop()
                 .into(imageView);
     }
 }

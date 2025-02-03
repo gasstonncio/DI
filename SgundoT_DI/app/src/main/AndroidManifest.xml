@@ -26,6 +26,9 @@
         <activity
             android:name=".data.views.DashboardActivity"
             android:exported="false"/>
+        <activity
+            android:name=".data.views.DetailActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.example.sgundot_di.R;
 import com.example.sgundot_di.data.models.Game;
 import java.util.ArrayList;
@@ -61,8 +61,10 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
         void bind(final Game game, final OnGameClickListener listener) {
             titleTextView.setText(game.getTítulo());
-            Glide.with(itemView.getContext())
+            Picasso.get()
                     .load(game.getImagen())
+                    .fit()
+                    .centerCrop()
                     .into(imageView);
 
             itemView.setOnClickListener(v -> {
