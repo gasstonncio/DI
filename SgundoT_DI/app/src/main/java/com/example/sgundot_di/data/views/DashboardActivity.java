@@ -51,11 +51,18 @@ public class DashboardActivity extends AppCompatActivity implements GameAdapter.
                 Toast.makeText(this, "Error: " + error, Toast.LENGTH_LONG).show();
             }
         });
+
+        // Añadir botón de favoritos
+        Button favoriteButton = findViewById(R.id.favoritesButton);
+        favoriteButton.setOnClickListener(v -> {
+            startActivity(new Intent(DashboardActivity.this, FavoritesActivity.class));
+        });
     }
 
     @Override
     public void onGameClick(Game game) {
         Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_ID, game.getId()); // Añadir ID
         intent.putExtra(DetailActivity.EXTRA_TITULO, game.getTitulo());
         intent.putExtra(DetailActivity.EXTRA_DESCRIPCION, game.getDescripcion());
         intent.putExtra(DetailActivity.EXTRA_IMAGEN, game.getImagen());
