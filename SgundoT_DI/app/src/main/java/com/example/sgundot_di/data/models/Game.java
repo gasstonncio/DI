@@ -1,35 +1,56 @@
 package com.example.sgundot_di.data.models;
 
+
 public class Game {
-    private String título;
-    private String descripción;
+    private String id;          // Añadido
+    private String titulo;
+    private String descripcion;
     private String imagen;
+    private boolean isFavorite; // Añadido
 
     // Constructor vacío requerido para Firebase
     public Game() {
     }
 
-    public Game(String título, String descripción, String imagen) {
-        this.título = título;
-        this.descripción = descripción;
+    public Game(String id, String titulo, String descripcion, String imagen) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
         this.imagen = imagen;
+        this.isFavorite = false;
     }
 
     // Getters y setters
-    public String getTítulo() {
-        return título;
+    public String getId() {
+        return id;
     }
 
-    public void setTítulo(String título) {
-        this.título = título;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getDescripción() {
-        return descripción;
+    public boolean isFavorite() {
+        return isFavorite;
     }
 
-    public void setDescripción(String descripción) {
-        this.descripción = descripción;
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getImagen() {

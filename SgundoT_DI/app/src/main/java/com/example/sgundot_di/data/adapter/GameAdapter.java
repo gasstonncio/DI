@@ -60,7 +60,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         }
 
         void bind(final Game game, final OnGameClickListener listener) {
-            titleTextView.setText(game.getTítulo());
+            titleTextView.setText(game.getTitulo());
             Picasso.get()
                     .load(game.getImagen())
                     .fit()

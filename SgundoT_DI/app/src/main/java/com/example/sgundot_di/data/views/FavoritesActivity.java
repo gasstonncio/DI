@@ -2,46 +2,36 @@ package com.example.sgundot_di.data.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.widget.Toast;
 import com.example.sgundot_di.R;
 import com.example.sgundot_di.data.adapter.GameAdapter;
 import com.example.sgundot_di.data.models.Game;
-import com.example.sgundot_di.data.viewmodels.DashboardViewModel;
+import com.example.sgundot_di.data.viewmodels.FavoritesViewModel;
 
-public class DashboardActivity extends AppCompatActivity implements GameAdapter.OnGameClickListener {
-
-    private DashboardViewModel viewModel;
+public class FavoritesActivity extends AppCompatActivity implements GameAdapter.OnGameClickListener {
+    private FavoritesViewModel viewModel;
     private GameAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_favorites);
 
         // Inicializar ViewModel
-        viewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+        viewModel = new ViewModelProvider(this).get(FavoritesViewModel.class);
 
         // Configurar RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.gamesRecyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columnas
+        RecyclerView recyclerView = findViewById(R.id.favoritesRecyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         adapter = new GameAdapter(this);
         recyclerView.setAdapter(adapter);
 
-        // Configurar botón de logout
-        Button logoutButton = findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(v -> {
-            viewModel.logoutUser();
-            startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
-            finish();
-        });
-
-        // Observar cambios en los datos
-        viewModel.getGamesLiveData().observe(this, games -> {
+        // Observar cambios en los favoritos
+        viewModel.getFavoritesLiveData().observe(this, games -> {
             adapter.setGames(games);
         });
 
@@ -55,6 +45,7 @@ public class DashboardActivity extends AppCompatActivity implements GameAdapter.
 
     @Override
     public void onGameClick(Game game) {
+        // Igual que en DashboardActivity
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(DetailActivity.EXTRA_TITULO, game.getTitulo());
         intent.putExtra(DetailActivity.EXTRA_DESCRIPCION, game.getDescripcion());
