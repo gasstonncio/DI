@@ -1,9 +1,20 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
+
+    <!-- Base Theme -->
     <style name="Base.Theme.SgundoT_DI" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+        <!-- Puedes personalizar el tema claro aquí -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.SgundoT_DI" parent="Base.Theme.SgundoT_DI" />
+    <!-- Tema principal que hereda de la base -->
+    <style name="Theme.SgundoT_DI" parent="Base.Theme.SgundoT_DI"/>
+
+    <!-- Estilo corregido para el icono de modo noche -->
+    <style name="NightModeIcon">
+        <item name="android:src">@drawable/ic_moon</item>
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+    </style>
+
 </resources>

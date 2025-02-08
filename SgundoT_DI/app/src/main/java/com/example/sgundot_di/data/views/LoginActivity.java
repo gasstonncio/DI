@@ -1,28 +1,67 @@
 package com.example.sgundot_di.data.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.sgundot_di.R;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private SwitchMaterial swDarkMode;
+    private SharedPreferences preferences;
+    private ImageView darkModeIcon;
+
+    private void updateDarkModeIcon(boolean isNightMode) {
+        darkModeIcon.setImageResource(isNightMode ? R.drawable.ic_sun : R.drawable.ic_moon);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Cargar configuración de modo oscuro antes de inflar el layout
+        preferences = getSharedPreferences("settings", MODE_PRIVATE);
+        boolean isNightMode = preferences.getBoolean("night_mode", false);
+        AppCompatDelegate.setDefaultNightMode(isNightMode ?
+                AppCompatDelegate.MODE_NIGHT_YES :
+                AppCompatDelegate.MODE_NIGHT_NO);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        swDarkMode = findViewById(R.id.swDarkMode);
+        darkModeIcon = findViewById(R.id.darkModeIcon);
         mAuth = FirebaseAuth.getInstance();
+
+        // Establecer estado inicial
+        swDarkMode.setChecked(isNightMode);
+        updateDarkModeIcon(isNightMode);
+
+        // Manejar cambios de modo oscuro
+        swDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("night_mode", isChecked);
+            editor.apply();
+
+            // Cambiar el tema
+            AppCompatDelegate.setDefaultNightMode(isChecked ?
+                    AppCompatDelegate.MODE_NIGHT_YES :
+                    AppCompatDelegate.MODE_NIGHT_NO);
+
+            // Actualizar el icono
+            updateDarkModeIcon(isChecked);
+        });
 
         EditText emailEditText = findViewById(R.id.emailEditText);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
@@ -53,4 +92,3 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 }
-
