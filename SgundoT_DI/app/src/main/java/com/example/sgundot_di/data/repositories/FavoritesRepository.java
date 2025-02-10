@@ -18,21 +18,19 @@ public class FavoritesRepository {
     private final MutableLiveData<String> errorLiveData;
 
     public FavoritesRepository() {
-        // Inicializar Firebase
         auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        favoritesRef = database.getReference("usuarios");
+        favoritesRef = database.getReference("users");
 
-        // Inicializar LiveData
         favoritesLiveData = new MutableLiveData<>();
         errorLiveData = new MutableLiveData<>();
 
-        // Cargar favoritos si hay usuario autenticado
         if (auth.getCurrentUser() != null) {
             loadFavorites();
         }
     }
 
+    // Cargar juegos favoritos
     private void loadFavorites() {
         String userId = auth.getCurrentUser().getUid();
         favoritesRef.child(userId).child("favoritos")
@@ -43,10 +41,11 @@ public class FavoritesRepository {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             Game game = snapshot.getValue(Game.class);
                             if (game != null) {
-                                game.setFavorite(true);
+                                game.setFavorite(true);  // Marcar el juego como favorito
                                 favoritesList.add(game);
                             }
                         }
+
                         favoritesLiveData.setValue(favoritesList);
                     }
 
@@ -57,6 +56,7 @@ public class FavoritesRepository {
                 });
     }
 
+    // Guardar o eliminar un juego de favoritos
     public void toggleFavorite(Game game) {
         if (auth.getCurrentUser() == null) {
             errorLiveData.setValue("Usuario no autenticado");
@@ -64,22 +64,20 @@ public class FavoritesRepository {
         }
 
         String userId = auth.getCurrentUser().getUid();
-        DatabaseReference userFavoritesRef = favoritesRef
-                .child(userId)
-                .child("favoritos")
-                .child(game.getId());
+        DatabaseReference userFavoritesRef = favoritesRef.child(userId).child("favoritos").child(game.getId());
 
         if (game.isFavorite()) {
-            // Eliminar de favoritos
-            userFavoritesRef.removeValue()
+            // Añadir juego a favoritos
+            userFavoritesRef.setValue(game)
                     .addOnFailureListener(e -> errorLiveData.setValue(e.getMessage()));
         } else {
-            // Añadir a favoritos
-            userFavoritesRef.setValue(game)
+            // Eliminar juego de favoritos
+            userFavoritesRef.removeValue()
                     .addOnFailureListener(e -> errorLiveData.setValue(e.getMessage()));
         }
     }
 
+    // Métodos para obtener los datos
     public MutableLiveData<List<Game>> getFavoritesLiveData() {
         return favoritesLiveData;
     }

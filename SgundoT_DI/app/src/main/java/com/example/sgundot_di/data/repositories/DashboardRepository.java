@@ -1,5 +1,7 @@
 package com.example.sgundot_di.data.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import com.example.sgundot_di.data.models.Game;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +32,13 @@ public class DashboardRepository {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Game game = snapshot.getValue(Game.class);
                     if (game != null) {
+                        // Asignar el ID usando la clave del nodo
+                        game.setId(snapshot.getKey()); // Esto asigna la clave de Firebase como el ID
+                        Log.d("DashboardRepository", "Juego recuperado:");
+                        Log.d("DashboardRepository", "ID: " + game.getId());
+                        Log.d("DashboardRepository", "Título: " + game.getTitulo());
+                        Log.d("DashboardRepository", "Descripción: " + game.getDescripcion());
+                        Log.d("DashboardRepository", "Imagen: " + game.getImagen());
                         gamesList.add(game);
                     }
                 }
@@ -41,6 +50,7 @@ public class DashboardRepository {
                 errorLiveData.setValue(databaseError.getMessage());
             }
         });
+
     }
 
     public MutableLiveData<List<Game>> getGamesLiveData() {

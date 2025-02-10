@@ -2,6 +2,7 @@ package com.example.sgundot_di.data.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,11 +62,29 @@ public class DashboardActivity extends AppCompatActivity implements GameAdapter.
 
     @Override
     public void onGameClick(Game game) {
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(DetailActivity.EXTRA_ID, game.getId()); // Añadir ID
-        intent.putExtra(DetailActivity.EXTRA_TITULO, game.getTitulo());
-        intent.putExtra(DetailActivity.EXTRA_DESCRIPCION, game.getDescripcion());
-        intent.putExtra(DetailActivity.EXTRA_IMAGEN, game.getImagen());
-        startActivity(intent);
+        // Verificar si los valores son null
+        if (game.getTitulo() != null && game.getDescripcion() != null && game.getImagen() != null) {
+            Log.d("DashboardActivity", "Enviando datos del juego: ");
+            Log.d("DashboardActivity", "Titulo: " + game.getTitulo());
+            Log.d("DashboardActivity", "Descripcion: " + game.getDescripcion());
+            Log.d("DashboardActivity", "Imagen: " + game.getImagen());
+
+            // Crear e iniciar el Intent
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra(DetailActivity.EXTRA_ID, game.getId());
+            intent.putExtra(DetailActivity.EXTRA_TITULO, game.getTitulo());
+            intent.putExtra(DetailActivity.EXTRA_DESCRIPCION, game.getDescripcion());
+            intent.putExtra(DetailActivity.EXTRA_IMAGEN, game.getImagen());
+            startActivity(intent);
+        } else {
+            // Si los valores son null, loguear el error
+            Log.e("DashboardActivity", "Datos del juego incompletos: ");
+            Log.e("DashboardActivity", "Titulo: " + game.getTitulo());
+            Log.e("DashboardActivity", "Descripcion: " + game.getDescripcion());
+            Log.e("DashboardActivity", "Imagen: " + game.getImagen());
+            Toast.makeText(this, "Información incompleta del juego", Toast.LENGTH_SHORT).show();
+        }
     }
+
+
 }

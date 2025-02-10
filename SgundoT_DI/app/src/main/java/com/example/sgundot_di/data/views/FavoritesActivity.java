@@ -2,15 +2,16 @@ package com.example.sgundot_di.data.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.widget.Toast;
 import com.example.sgundot_di.R;
 import com.example.sgundot_di.data.adapter.GameAdapter;
 import com.example.sgundot_di.data.models.Game;
 import com.example.sgundot_di.data.viewmodels.FavoritesViewModel;
+
 
 public class FavoritesActivity extends AppCompatActivity implements GameAdapter.OnGameClickListener {
     private FavoritesViewModel viewModel;
@@ -32,7 +33,11 @@ public class FavoritesActivity extends AppCompatActivity implements GameAdapter.
 
         // Observar cambios en los favoritos
         viewModel.getFavoritesLiveData().observe(this, games -> {
-            adapter.setGames(games);
+            if (games != null) {
+                adapter.setGames(games);
+            } else {
+                Toast.makeText(FavoritesActivity.this, "No se pudieron cargar los favoritos", Toast.LENGTH_SHORT).show();
+            }
         });
 
         // Observar errores
@@ -45,7 +50,6 @@ public class FavoritesActivity extends AppCompatActivity implements GameAdapter.
 
     @Override
     public void onGameClick(Game game) {
-        // Igual que en DashboardActivity
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(DetailActivity.EXTRA_TITULO, game.getTitulo());
         intent.putExtra(DetailActivity.EXTRA_DESCRIPCION, game.getDescripcion());
@@ -53,3 +57,5 @@ public class FavoritesActivity extends AppCompatActivity implements GameAdapter.
         startActivity(intent);
     }
 }
+
+

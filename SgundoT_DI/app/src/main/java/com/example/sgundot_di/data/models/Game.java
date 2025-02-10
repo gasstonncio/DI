@@ -1,10 +1,9 @@
 package com.example.sgundot_di.data.models;
 
-
 public class Game {
-    private String id;          // Añadido
-    private String titulo;
-    private String descripcion;
+    private String id;          // Campo id para almacenar el identificador único del juego
+    private String titulo;      // Cambiado de "título" a "titulo"
+    private String descripcion; // Cambiado de "descripción" a "descripcion"
     private String imagen;
     private boolean isFavorite; // Añadido
 
@@ -26,7 +25,7 @@ public class Game {
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id;  // Este setter permite asignar el id generado por Firebase
     }
 
     public boolean isFavorite() {
