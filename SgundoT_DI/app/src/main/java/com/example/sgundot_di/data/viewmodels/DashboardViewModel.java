@@ -4,31 +4,26 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.sgundot_di.data.models.Game;
 import com.example.sgundot_di.data.repositories.DashboardRepository;
-import com.example.sgundot_di.data.repositories.UserRepository;
 import java.util.List;
 
 public class DashboardViewModel extends ViewModel {
-    private final DashboardRepository dashboardRepository;
-    private final UserRepository userRepository;
+
+    private final DashboardRepository repository;
+    private final LiveData<List<Game>> juegosLiveData;
+    private final LiveData<String> errorLiveData;
 
     public DashboardViewModel() {
-        dashboardRepository = new DashboardRepository();
-        userRepository = new UserRepository();
+        repository = new DashboardRepository();
+        juegosLiveData = repository.getJuegosLiveData();
+        errorLiveData = repository.getErrorLiveData();
+        repository.cargarJuegos();
     }
 
-    public LiveData<List<Game>> getGamesLiveData() {
-        return dashboardRepository.getGamesLiveData();
+    public LiveData<List<Game>> getJuegosLiveData() {
+        return juegosLiveData;
     }
 
     public LiveData<String> getErrorLiveData() {
-        return dashboardRepository.getErrorLiveData();
-    }
-
-    public void logoutUser() {
-        userRepository.logoutUser();
-    }
-
-    public boolean isUserLoggedIn() {
-        return userRepository.isUserLoggedIn();
+        return errorLiveData;
     }
 }

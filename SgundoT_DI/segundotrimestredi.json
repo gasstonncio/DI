@@ -1,0 +1,199 @@
+{
+  "favoritos": {
+    "xAW8CkskB7ScgKKRcLnn9ZEmPU32": {
+      "God of War": true,
+      "The Last of Us Part II": true,
+      "The Legend of Zelda: Breath of the Wild": true,
+      "The Witcher 3: Wild Hunt": true
+    }
+  },
+  "juegos": [
+    {
+      "descripcion": "Un juego de rol de mundo abierto desarrollado por CD Projekt Red, que sigue las aventuras del cazador de monstruos Geralt de Rivia en su búsqueda de su hija adoptiva.",
+      "imagen": "https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png",
+      "titulo": "The Witcher 3: Wild Hunt"
+    },
+    {
+      "descripcion": "Un shooter en primera persona multijugador por equipos desarrollado por Blizzard Entertainment, que presenta una variedad de héroes con habilidades únicas.",
+      "imagen": "https://static.playoverwatch.com/img/logos/overwatch-share.jpg",
+      "titulo": "Overwatch"
+    },
+    {
+      "descripcion": "Una aventura de mundo abierto desarrollada por Nintendo, donde los jugadores exploran el reino de Hyrule para derrotar a Calamity Ganon.",
+      "imagen": "https://cdn.dekudeals.com/images/4851cf16e603d49d660fdfc099ae5f9d8cb172cd/w500.jpg",
+      "titulo": "The Legend of Zelda: Breath of the Wild"
+    },
+    {
+      "descripcion": "Una reinvención de la serie clásica de acción y aventura de Santa Monica Studio, que sigue a Kratos y su hijo Atreus en una odisea por tierras nórdicas.",
+      "imagen": "https://wallpaperaccess.com/full/1637250.jpg",
+      "titulo": "God of War"
+    },
+    {
+      "descripcion": "Un juego de acción y aventura desarrollado por FromSoftware, que sigue a un shinobi en su misión de rescatar a su señor secuestrado.",
+      "imagen": "https://image.api.playstation.com/cdn/HP0506/CUSA13910_00/QKJRzanGk86ezpx2pk5QqQaduoXGJV3u8vHIejSav4MYiHA3F7zNgxSOF9bJmt2T.png",
+      "titulo": "Sekiro: Shadows Die Twice"
+    },
+    {
+      "descripcion": "Una secuela del aclamado juego de acción y aventura de Naughty Dog, que continúa la historia de Ellie en un mundo postapocalíptico.",
+      "imagen": "https://cultgames.ru/wp-content/uploads/2022/11/the-last-of-us-part-ii.jpg",
+      "titulo": "The Last of Us Part II"
+    },
+    {
+      "descripcion": "Un juego de plataformas cooperativo desarrollado por Hazelight Studios, que sigue a una pareja transformada en muñecos que deben trabajar juntos para superar desafíos.",
+      "imagen": "https://image.api.playstation.com/vulcan/ap/rnd/202012/0815/7CRynuLSAb0vysSC4TmZy5e4.png",
+      "titulo": "It Takes Two"
+    },
+    {
+      "descripcion": "Un juego de rol de acción desarrollado por FromSoftware, que ofrece un vasto mundo abierto y una profunda narrativa colaborada con George R. R. Martin.",
+      "imagen": "https://cdn.wccftech.com/wp-content/uploads/2021/06/ER_KEY-ART-scaled-e1623411764381-2048x1052.jpg",
+      "titulo": "Elden Ring"
+    },
+    {
+      "descripcion": "La secuela de 'Breath of the Wild' desarrollada por Nintendo, que continúa las aventuras de Link en el reino de Hyrule.",
+      "imagen": "https://static.actugaming.net/media/2021/10/the-legend-of-zelda-tears-of-the-kingdom-jaquette-1.jpg",
+      "titulo": "The Legend of Zelda: Tears of the Kingdom"
+    },
+    {
+      "descripcion": "Un juego de plataformas desarrollado por Team Asobi, que ofrece una experiencia innovadora y envolvente en realidad virtual.",
+      "imagen": "https://images6.alphacoders.com/112/thumb-1920-1126823.jpg",
+      "titulo": "ASTRO BOT"
+    }
+  ],
+  "users": {
+    "0mAXbluKH9S1K82uIKqzdZUSozV2": {
+      "address": "Samoedo",
+      "email": "alvaro@alvaro.com",
+      "favoritos": [
+        {
+          "descripcion": "Un juego de rol de mundo abierto desarrollado por CD Projekt Red, que sigue las aventuras del cazador de monstruos Geralt de Rivia en su búsqueda de su hija adoptiva.",
+          "favorite": true,
+          "id": "0",
+          "imagen": "https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png",
+          "titulo": "The Witcher 3: Wild Hunt"
+        }
+      ],
+      "name": "Alvaro",
+      "phone": "555555555"
+    },
+    "3XQGfilizzPIIehoXByBaP32MjD2": {
+      "address": "Afundacion",
+      "email": "carlos@carlos.com",
+      "favoritos": {
+        "2": {
+          "descripcion": "Una aventura de mundo abierto desarrollada por Nintendo, donde los jugadores exploran el reino de Hyrule para derrotar a Calamity Ganon.",
+          "favorite": true,
+          "id": "2",
+          "imagen": "https://cdn.dekudeals.com/images/4851cf16e603d49d660fdfc099ae5f9d8cb172cd/w500.jpg",
+          "titulo": "The Legend of Zelda: Breath of the Wild"
+        },
+        "4": {
+          "descripcion": "Un juego de acción y aventura desarrollado por FromSoftware, que sigue a un shinobi en su misión de rescatar a su señor secuestrado.",
+          "favorite": true,
+          "id": "4",
+          "imagen": "https://image.api.playstation.com/cdn/HP0506/CUSA13910_00/QKJRzanGk86ezpx2pk5QqQaduoXGJV3u8vHIejSav4MYiHA3F7zNgxSOF9bJmt2T.png",
+          "titulo": "Sekiro: Shadows Die Twice"
+        },
+        "9": {
+          "descripcion": "Un juego de plataformas desarrollado por Team Asobi, que ofrece una experiencia innovadora y envolvente en realidad virtual.",
+          "favorite": true,
+          "id": "9",
+          "imagen": "https://images6.alphacoders.com/112/thumb-1920-1126823.jpg",
+          "titulo": "ASTRO BOT"
+        }
+      },
+      "name": "Carlos",
+      "phone": "888888888"
+    },
+    "DsM0bIv9bOTkNrZTwqGpH7wPh8c2": {
+      "address": "A Coruña",
+      "email": "manuel@manuel.com",
+      "name": "Manuel",
+      "phone": "666666666"
+    },
+    "Gss5QvKUBnXZ4a17Qvw80wSO8H42": {
+      "address": "Sada",
+      "email": "alex@alex.com",
+      "favoritos": {
+        "0": {
+          "descripcion": "Un juego de rol de mundo abierto desarrollado por CD Projekt Red, que sigue las aventuras del cazador de monstruos Geralt de Rivia en su búsqueda de su hija adoptiva.",
+          "favorite": true,
+          "id": "0",
+          "imagen": "https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png",
+          "titulo": "The Witcher 3: Wild Hunt"
+        },
+        "5": {
+          "descripcion": "Una secuela del aclamado juego de acción y aventura de Naughty Dog, que continúa la historia de Ellie en un mundo postapocalíptico.",
+          "favorite": true,
+          "id": "5",
+          "imagen": "https://cultgames.ru/wp-content/uploads/2022/11/the-last-of-us-part-ii.jpg",
+          "titulo": "The Last of Us Part II"
+        }
+      },
+      "name": "Alex",
+      "phone": "111111111"
+    },
+    "JWVxqDsAC2S1NAfQ9uokukZVxGB3": {
+      "address": "Noia",
+      "email": "xian@xian.com",
+      "favoritos": [
+        {
+          "descripcion": "Un juego de rol de mundo abierto desarrollado por CD Projekt Red, que sigue las aventuras del cazador de monstruos Geralt de Rivia en su búsqueda de su hija adoptiva.",
+          "favorite": true,
+          "id": "0",
+          "imagen": "https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png",
+          "titulo": "The Witcher 3: Wild Hunt"
+        },
+        null,
+        {
+          "descripcion": "Una aventura de mundo abierto desarrollada por Nintendo, donde los jugadores exploran el reino de Hyrule para derrotar a Calamity Ganon.",
+          "favorite": true,
+          "id": "2",
+          "imagen": "https://cdn.dekudeals.com/images/4851cf16e603d49d660fdfc099ae5f9d8cb172cd/w500.jpg",
+          "titulo": "The Legend of Zelda: Breath of the Wild"
+        }
+      ],
+      "name": "Xian",
+      "phone": "555555555"
+    },
+    "LhqHiGdxiPUqsR28CVN8qorThxU2": {
+      "address": "Laracha",
+      "email": "jose@jose.com",
+      "name": "Jose",
+      "phone": "777777777"
+    },
+    "XHugP1eSrhRZ5aSSMpnpWK4CSxg2": {
+      "address": "A Coruna",
+      "email": "lucas@lucas.com",
+      "favoritos": {
+        "3": {
+          "descripcion": "Una reinvención de la serie clásica de acción y aventura de Santa Monica Studio, que sigue a Kratos y su hijo Atreus en una odisea por tierras nórdicas.",
+          "favorite": true,
+          "id": "3",
+          "imagen": "https://wallpaperaccess.com/full/1637250.jpg",
+          "titulo": "God of War"
+        },
+        "7": {
+          "descripcion": "Un juego de rol de acción desarrollado por FromSoftware, que ofrece un vasto mundo abierto y una profunda narrativa colaborada con George R. R. Martin.",
+          "favorite": true,
+          "id": "7",
+          "imagen": "https://cdn.wccftech.com/wp-content/uploads/2021/06/ER_KEY-ART-scaled-e1623411764381-2048x1052.jpg",
+          "titulo": "Elden Ring"
+        }
+      },
+      "name": "Lucas",
+      "phone": "999999999"
+    },
+    "gKdaL10aZ7Vr3NcYcgt3xS7ppKo2": {
+      "address": "Sada",
+      "email": "pedro@pedro.com",
+      "name": "Pedro",
+      "phone": "777777777"
+    },
+    "pHltq89VH3gt0sVrhzZzLEwQ3pw2": {
+      "address": "Sada",
+      "email": "miguel@miguel.com",
+      "name": "Miguel",
+      "phone": "999999999"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 package com.example.sgundot_di.data.repositories;
 
-import android.util.Log;
-
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.example.sgundot_di.data.models.Game;
 import com.google.firebase.database.DataSnapshot;
@@ -13,51 +13,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardRepository {
-    private final DatabaseReference gamesRef;
-    private final MutableLiveData<List<Game>> gamesLiveData;
+
+    private final DatabaseReference juegosRef;
+    private final MutableLiveData<List<Game>> juegosLiveData;
     private final MutableLiveData<String> errorLiveData;
 
     public DashboardRepository() {
-        gamesRef = FirebaseDatabase.getInstance().getReference("juegos");
-        gamesLiveData = new MutableLiveData<>();
+        juegosRef = FirebaseDatabase.getInstance().getReference("juegos");
+        juegosLiveData = new MutableLiveData<>();
         errorLiveData = new MutableLiveData<>();
-        loadGames();
     }
 
-    private void loadGames() {
-        gamesRef.addValueEventListener(new ValueEventListener() {
+    public LiveData<List<Game>> getJuegosLiveData() {
+        return juegosLiveData;
+    }
+
+    public LiveData<String> getErrorLiveData() {
+        return errorLiveData;
+    }
+
+    public void cargarJuegos() {
+        juegosRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Game> gamesList = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Game game = snapshot.getValue(Game.class);
-                    if (game != null) {
-                        // Asignar el ID usando la clave del nodo
-                        game.setId(snapshot.getKey()); // Esto asigna la clave de Firebase como el ID
-                        Log.d("DashboardRepository", "Juego recuperado:");
-                        Log.d("DashboardRepository", "ID: " + game.getId());
-                        Log.d("DashboardRepository", "Título: " + game.getTitulo());
-                        Log.d("DashboardRepository", "Descripción: " + game.getDescripcion());
-                        Log.d("DashboardRepository", "Imagen: " + game.getImagen());
-                        gamesList.add(game);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Game> listaDeJuegos = new ArrayList<>();
+                int index = 0; // Contador manual para asignar ID
+
+                for (DataSnapshot juegoSnapshot : snapshot.getChildren()) {
+                    String titulo = juegoSnapshot.child("titulo").getValue(String.class);
+                    String descripcion = juegoSnapshot.child("descripcion").getValue(String.class);
+                    String imagen = juegoSnapshot.child("imagen").getValue(String.class);
+
+                    if (titulo != null && descripcion != null && imagen != null) {
+                        Game game = new Game(String.valueOf(index), titulo, descripcion, imagen, false);
+                        listaDeJuegos.add(game);
+                        index++; // Incrementamos el contador manualmente
                     }
                 }
-                gamesLiveData.setValue(gamesList);
+
+                juegosLiveData.setValue(listaDeJuegos);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                errorLiveData.setValue(databaseError.getMessage());
+            public void onCancelled(@NonNull DatabaseError error) {
+                errorLiveData.setValue("Error al cargar juegos: " + error.getMessage());
             }
         });
-
-    }
-
-    public MutableLiveData<List<Game>> getGamesLiveData() {
-        return gamesLiveData;
-    }
-
-    public MutableLiveData<String> getErrorLiveData() {
-        return errorLiveData;
     }
 }

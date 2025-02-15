@@ -15,21 +15,24 @@
             android:exported="false"
             android:label="title_activity_login" />
         <activity
-            android:name=".data.views.LoginActivity"
+            android:name=".data.views.SplashActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".data.views.DashboardActivity"
-            android:exported="false"/>
+            android:name=".data.views.MainActivity"
+            android:exported="true"/>
+
         <activity
-            android:name=".data.views.DetailActivity"
-            android:exported="false"/>
-        <activity android:name=".data.views.FavoritesActivity"/>
+            android:name=".data.views.LoginActivity"
+            android:exported="true"/>
+
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

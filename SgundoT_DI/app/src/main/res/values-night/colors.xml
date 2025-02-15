@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores adaptados para modo oscuro -->
+    <color name="black">#FFFFFF</color> <!-- Hacemos que "negro" sea blanco en modo oscuro -->
+    <color name="white">#30263c</color> <!-- Invertimos el blanco -->
+    <color name="soft_purple">#dac0f9</color> <!-- Se mantiene igual -->
+
+    <!-- Fondo y texto -->
+    <color name="background">#30263c</color> <!-- Fondo oscuro -->
+    <color name="text_primary">@color/soft_purple</color> <!-- Usamos el color suave para el texto -->
+
+    <color name="button_background">#dac0f9</color> <!-- Fondo claro en modo oscuro -->
+    <color name="button_text">#30263c</color> <!-- Texto oscuro en modo oscuro -->
+
+    <color name="item_title_background">#DAC0F9</color> <!-- Un tono más claro para contrastar -->
+    <color name="item_title_text">#30263C</color> <!-- Texto oscuro en modo oscuro -->
+
+    <color name="dash_title">#38294d</color>
+
+
+
+</resources>

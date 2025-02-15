@@ -7,71 +7,58 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.squareup.picasso.Picasso;
 import com.example.sgundot_di.R;
 import com.example.sgundot_di.data.models.Game;
-import java.util.ArrayList;
+import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
-    private List<Game> games = new ArrayList<>();
-    private OnGameClickListener listener;
 
-    public interface OnGameClickListener {
-        void onGameClick(Game game);
+    private final List<Game> gameList;
+    private final OnItemClickListener clickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Game game);
     }
 
-    public GameAdapter(OnGameClickListener listener) {
-        this.listener = listener;
+    public GameAdapter(List<Game> gameList, OnItemClickListener clickListener) {
+        this.gameList = gameList;
+        this.clickListener = clickListener;
     }
 
     @NonNull
     @Override
     public GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_game, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_game, parent, false);
         return new GameViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder holder, int position) {
-        Game game = games.get(position);
-        holder.bind(game, listener);
+        Game game = gameList.get(position);
+        holder.bind(game, clickListener);
     }
 
     @Override
     public int getItemCount() {
-        return games.size();
+        return gameList.size();
     }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
-        notifyDataSetChanged();
-    }
-
-    static class GameViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView imageView;
+    public static class GameViewHolder extends RecyclerView.ViewHolder {
         private final TextView titleTextView;
+        private final ImageView gameImageView;
 
-        GameViewHolder(@NonNull View itemView) {
+        public GameViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.gameImage);
             titleTextView = itemView.findViewById(R.id.gameTitle);
+            gameImageView = itemView.findViewById(R.id.gameImage);
         }
 
-        void bind(final Game game, final OnGameClickListener listener) {
+        public void bind(Game game, OnItemClickListener clickListener) {
             titleTextView.setText(game.getTitulo());
-            Picasso.get()
-                    .load(game.getImagen())
-                    .fit()
-                    .centerCrop()
-                    .into(imageView);
+            Picasso.get().load(game.getImagen()).into(gameImageView);
 
-            itemView.setOnClickListener(v -> {
-                if (listener != null) {
-                    listener.onGameClick(game);
-                }
-            });
+            itemView.setOnClickListener(v -> clickListener.onItemClick(game));
         }
     }
 }
