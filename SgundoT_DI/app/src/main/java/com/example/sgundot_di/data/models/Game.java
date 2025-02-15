@@ -1,39 +1,28 @@
 package com.example.sgundot_di.data.models;
 
 public class Game {
-    private String id;          // Campo id para almacenar el identificador único del juego
-    private String titulo;      // Cambiado de "título" a "titulo"
-    private String descripcion; // Cambiado de "descripción" a "descripcion"
+    private String id;
+    private String titulo;
+    private String descripcion;
     private String imagen;
-    private boolean isFavorite; // Añadido
+    private boolean isFavorite;
 
-    // Constructor vacío requerido para Firebase
-    public Game() {
-    }
+    public Game() { }
 
-    public Game(String id, String titulo, String descripcion, String imagen) {
+    public Game(String id, String titulo, String descripcion, String imagen, boolean isFavorite) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagen = imagen;
-        this.isFavorite = false;
+        this.isFavorite = isFavorite;
     }
 
-    // Getters y setters
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id;  // Este setter permite asignar el id generado por Firebase
-    }
-
-    public boolean isFavorite() {
-        return isFavorite;
-    }
-
-    public void setFavorite(boolean favorite) {
-        isFavorite = favorite;
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -58,5 +47,13 @@ public class Game {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) { // 🔹 Se agregó este setter para corregir el error
+        this.isFavorite = favorite;
     }
 }

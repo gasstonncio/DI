@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <!-- Colores principales -->
+    <color name="black">#35313b</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="soft_purple">#dac0f9</color>
+
+    <!-- Fondo general -->
+    <color name="background">#bba9d2</color>
+    <color name="text_primary">@color/black</color>
+
+    <color name="button_background">#44315b</color> <!-- Un morado oscuro para contrastar -->
+    <color name="button_text">#dac0f9</color>
+
+    <color name="item_title_background">#B37FCE</color> <!-- Un morado más oscuro que el fondo -->
+    <color name="item_title_text">#44315b</color>
+
+    <color name="dash_title">#2e2b31</color>
+
 </resources>

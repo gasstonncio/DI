@@ -8,20 +8,23 @@ import java.util.List;
 
 public class FavoritesViewModel extends ViewModel {
     private final FavoritesRepository repository;
+    private final LiveData<List<Game>> favoriteGamesLiveData;
 
     public FavoritesViewModel() {
         repository = new FavoritesRepository();
+        favoriteGamesLiveData = repository.getFavoriteGamesLiveData();
+        repository.loadFavorites(); // 🔹 Carga la lista de favoritos al iniciar
     }
 
-    public LiveData<List<Game>> getFavoritesLiveData() {
-        return repository.getFavoritesLiveData();
+    public LiveData<List<Game>> getFavoriteGamesLiveData() {
+        return favoriteGamesLiveData;
     }
 
-    public LiveData<String> getErrorLiveData() {
-        return repository.getErrorLiveData();
+    public void agregarAFavoritos(Game game) {
+        repository.agregarAFavoritos(game);
     }
 
-    public void toggleFavorite(Game game) {
-        repository.toggleFavorite(game);
+    public void eliminarDeFavoritos(Game game) { // 🔹 Nuevo método para eliminar favoritos
+        repository.eliminarDeFavoritos(game);
     }
 }

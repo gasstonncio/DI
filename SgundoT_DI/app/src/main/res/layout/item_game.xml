@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:layout_margin="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,16 +16,21 @@
         <ImageView
             android:id="@+id/gameImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="260dp"
             android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/gameTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="80dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@color/item_title_background"
+            android:textColor="@color/item_title_text"/>
+
+
 
     </LinearLayout>
 
