@@ -19,11 +19,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    private SwitchMaterial swDarkMode;
-    private SharedPreferences preferences;
-    private ImageView darkModeIcon;
+    private FirebaseAuth mAuth; // Manejo de autenticación con Firebase
+    private SwitchMaterial swDarkMode; // Switch para activar/desactivar modo oscuro
+    private SharedPreferences preferences; // Preferencias para almacenar el estado del modo oscuro
+    private ImageView darkModeIcon; // Icono que indica el estado del modo oscuro
 
+    // Método para actualizar el icono del modo oscuro
     private void updateDarkModeIcon(boolean isNightMode) {
         darkModeIcon.setImageResource(isNightMode ? R.drawable.ic_sun : R.drawable.ic_moon);
     }
@@ -40,11 +41,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Inicializamos las vistas
         swDarkMode = findViewById(R.id.swDarkMode);
         darkModeIcon = findViewById(R.id.darkModeIcon);
         mAuth = FirebaseAuth.getInstance();
 
-        // Establecer estado inicial
+        // Establecer estado inicial del switch y actualizar icono
         swDarkMode.setChecked(isNightMode);
         updateDarkModeIcon(isNightMode);
 
@@ -54,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             editor.putBoolean("night_mode", isChecked);
             editor.apply();
 
-            // Cambiar el tema
+            // Cambiar el tema de la aplicación
             AppCompatDelegate.setDefaultNightMode(isChecked ?
                     AppCompatDelegate.MODE_NIGHT_YES :
                     AppCompatDelegate.MODE_NIGHT_NO);
@@ -68,10 +70,12 @@ public class LoginActivity extends AppCompatActivity {
         Button loginButton = findViewById(R.id.loginButton);
         TextView registerTextView = findViewById(R.id.registerTextView);
 
+        // Evento del botón de inicio de sesión
         loginButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString();
             String password = passwordEditText.getText().toString();
 
+            // Autenticación con Firebase
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
@@ -87,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                     });
         });
 
+        // Evento para ir a la pantalla de registro
         registerTextView.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });

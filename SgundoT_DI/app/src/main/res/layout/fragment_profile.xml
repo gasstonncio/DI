@@ -5,15 +5,17 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Título del perfil -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Configuración de Usuario"
+        android:text="Perfil"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:gravity="center"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Campo para cambiar contraseña -->
+    <!-- Campo para ingresar una nueva contraseña -->
     <EditText
         android:id="@+id/newPasswordEditText"
         android:layout_width="match_parent"
@@ -21,19 +23,20 @@
         android:hint="Nueva contraseña"
         android:inputType="textPassword"/>
 
+    <!-- Botón para cambiar la contraseña -->
     <Button
         android:id="@+id/changePasswordButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cambiar contraseña"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="16dp"/>
 
-    <!-- Switch para alternar modo oscuro -->
+    <!-- Switch para activar/desactivar el modo oscuro -->
     <Switch
         android:id="@+id/darkModeSwitch"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Modo oscuro"
+        android:text="Modo Oscuro"
         android:layout_marginTop="16dp"/>
 
 </LinearLayout>

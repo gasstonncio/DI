@@ -9,18 +9,21 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Campo de entrada para el nombre completo -->
         <EditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre completo" />
 
+        <!-- Campo de entrada para el correo electrónico -->
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email" />
 
+        <!-- Campo de entrada para la contraseña -->
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
@@ -28,6 +31,7 @@
             android:hint="Contraseña"
             android:inputType="textPassword" />
 
+        <!-- Campo de entrada para confirmar la contraseña -->
         <EditText
             android:id="@+id/confirmPasswordEditText"
             android:layout_width="match_parent"
@@ -35,6 +39,7 @@
             android:hint="Confirmar contraseña"
             android:inputType="textPassword" />
 
+        <!-- Campo de entrada para el teléfono -->
         <EditText
             android:id="@+id/phoneEditText"
             android:layout_width="match_parent"
@@ -42,12 +47,14 @@
             android:hint="Teléfono"
             android:inputType="phone" />
 
+        <!-- Campo de entrada para la dirección -->
         <EditText
             android:id="@+id/addressEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Dirección" />
 
+        <!-- Botón para registrar al usuario -->
         <Button
             android:id="@+id/registerButton"
             android:layout_width="match_parent"

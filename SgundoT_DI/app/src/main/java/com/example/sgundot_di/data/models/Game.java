@@ -1,14 +1,17 @@
 package com.example.sgundot_di.data.models;
 
 public class Game {
+    // Atributos del modelo de datos de un juego
     private String id;
     private String titulo;
     private String descripcion;
     private String imagen;
     private boolean isFavorite;
 
+    // Constructor vacío requerido para Firebase
     public Game() { }
 
+    // Constructor con parámetros para inicializar un juego
     public Game(String id, String titulo, String descripcion, String imagen, boolean isFavorite) {
         this.id = id;
         this.titulo = titulo;
@@ -17,6 +20,7 @@ public class Game {
         this.isFavorite = isFavorite;
     }
 
+    // Métodos getter y setter para obtener y modificar los atributos
     public String getId() {
         return id;
     }
@@ -53,7 +57,7 @@ public class Game {
         return isFavorite;
     }
 
-    public void setFavorite(boolean favorite) { // 🔹 Se agregó este setter para corregir el error
+    public void setFavorite(boolean favorite) { // 🔹 Método para modificar el estado de favorito
         this.isFavorite = favorite;
     }
 }

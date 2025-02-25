@@ -29,8 +29,10 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflamos la vista del fragmento de perfil
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        // Inicializamos las vistas
         newPasswordEditText = view.findViewById(R.id.newPasswordEditText);
         darkModeSwitch = view.findViewById(R.id.darkModeSwitch);
         Button changePasswordButton = view.findViewById(R.id.changePasswordButton);
@@ -38,12 +40,12 @@ public class ProfileFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
-        // 🔹 Estado inicial del switch basado en SharedPreferences
+        // Configuración inicial del switch de modo oscuro basado en preferencias
         SharedPreferences prefs = requireActivity().getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean("darkMode", false);
         darkModeSwitch.setChecked(isDarkMode);
 
-        // 🔹 Listener para cambiar contraseña
+        // Listener para cambiar la contraseña del usuario
         changePasswordButton.setOnClickListener(v -> {
             String newPassword = newPasswordEditText.getText().toString().trim();
 
@@ -62,7 +64,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        // 🔹 Listener para activar/desactivar modo oscuro
+        // Listener para alternar el modo oscuro
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             toggleDarkMode(isChecked);
         });
@@ -70,19 +72,18 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    // Método para activar/desactivar el modo oscuro
     private void toggleDarkMode(boolean enableDarkMode) {
-        // 🔹 Guardamos la preferencia en SharedPreferences
         SharedPreferences prefs = requireActivity().getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
         prefs.edit().putBoolean("darkMode", enableDarkMode).apply();
 
-        // 🔹 Aplicamos el tema
         if (enableDarkMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        // 🔹 Recreamos la actividad para aplicar el cambio
+        // Recreamos la actividad para aplicar los cambios
         requireActivity().recreate();
     }
 }

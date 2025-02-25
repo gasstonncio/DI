@@ -5,30 +5,34 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Contenedor de botones para funcionalidades principales -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Botón para ver la lista de favoritos -->
         <Button
             android:id="@+id/favoritesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Favoritos" />
 
+        <!-- Espaciador para distribuir los botones correctamente -->
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
+        <!-- Botón para cerrar sesión -->
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Logout" />
-
     </LinearLayout>
 
+    <!-- RecyclerView que mostrará la lista de juegos disponibles -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gamesRecyclerView"
         android:layout_width="match_parent"

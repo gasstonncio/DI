@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Título del Dashboard -->
     <TextView
         android:id="@+id/dashboardTitle"
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
         android:background="@color/item_title_background"
         android:padding="16dp" />
 
-
+    <!-- Lista de juegos mostrados en el Dashboard -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dashboardRecyclerView"
         android:layout_width="match_parent"
@@ -26,6 +27,5 @@
         android:clipToPadding="false"
         android:layout_gravity="center"
         android:scrollbars="vertical"/>
-
 
 </LinearLayout>

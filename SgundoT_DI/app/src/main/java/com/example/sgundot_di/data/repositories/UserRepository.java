@@ -8,18 +8,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class UserRepository {
-    private final FirebaseAuth firebaseAuth;
-    private final DatabaseReference usersRef;
-    private final MutableLiveData<User> userLiveData;
-    private final MutableLiveData<String> errorLiveData;
+    private final FirebaseAuth firebaseAuth; // Instancia de Firebase Authentication
+    private final DatabaseReference usersRef; // Referencia a la base de datos Firebase para usuarios
+    private final MutableLiveData<User> userLiveData; // LiveData para manejar datos del usuario
+    private final MutableLiveData<String> errorLiveData; // LiveData para manejar errores
 
     public UserRepository() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        usersRef = FirebaseDatabase.getInstance().getReference("users");
+        firebaseAuth = FirebaseAuth.getInstance(); // Inicializamos Firebase Authentication
+        usersRef = FirebaseDatabase.getInstance().getReference("users"); // Referencia a la colección "users"
         userLiveData = new MutableLiveData<>();
         errorLiveData = new MutableLiveData<>();
     }
 
+    // Método para registrar un usuario en Firebase Authentication y guardarlo en la base de datos
     public void registerUser(String email, String password, String username) {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(authResult -> {
@@ -34,6 +35,7 @@ public class UserRepository {
                 .addOnFailureListener(e -> errorLiveData.setValue(e.getMessage()));
     }
 
+    // Método para iniciar sesión en Firebase Authentication
     public void loginUser(String email, String password) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(authResult -> {
@@ -50,19 +52,23 @@ public class UserRepository {
                 .addOnFailureListener(e -> errorLiveData.setValue(e.getMessage()));
     }
 
+    // Método para cerrar sesión
     public void logoutUser() {
         firebaseAuth.signOut();
         userLiveData.setValue(null);
     }
 
+    // Método para obtener datos del usuario autenticado
     public MutableLiveData<User> getUserLiveData() {
         return userLiveData;
     }
 
+    // Método para obtener errores de autenticación
     public MutableLiveData<String> getErrorLiveData() {
         return errorLiveData;
     }
 
+    // Método para verificar si un usuario está autenticado
     public boolean isUserLoggedIn() {
         return firebaseAuth.getCurrentUser() != null;
     }

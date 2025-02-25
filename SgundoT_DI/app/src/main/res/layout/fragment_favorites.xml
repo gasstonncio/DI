@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Título de la sección de favoritos -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,10 +14,12 @@
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
 
+    <!-- RecyclerView que mostrará la lista de juegos favoritos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:clipToPadding="false"
         android:padding="8dp" />
 

@@ -5,12 +5,14 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Contenedor para el switch de modo oscuro y su icono -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
+        <!-- Icono que indica el estado del modo oscuro -->
         <ImageView
             android:id="@+id/darkModeIcon"
             android:layout_width="24dp"
@@ -18,18 +20,21 @@
             android:layout_marginEnd="8dp"
             android:contentDescription="Modo Oscuro"/>
 
+        <!-- Switch para activar/desactivar el modo oscuro -->
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/swDarkMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <!-- Campo de entrada para el correo electrónico -->
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Introduce tu email" />
 
+    <!-- Campo de entrada para la contraseña -->
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
@@ -37,12 +42,14 @@
         android:hint="Introduce tu contraseña"
         android:inputType="textPassword" />
 
+    <!-- Botón para iniciar sesión -->
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Iniciar sesión" />
 
+    <!-- Texto para redirigir a la pantalla de registro -->
     <TextView
         android:id="@+id/registerTextView"
         android:layout_width="wrap_content"
@@ -50,7 +57,5 @@
         android:text="¿No tienes cuenta? Regístrate"
         android:textColor="@android:color/holo_blue_light"
         android:paddingTop="16dp" />
-
-
 
 </LinearLayout>

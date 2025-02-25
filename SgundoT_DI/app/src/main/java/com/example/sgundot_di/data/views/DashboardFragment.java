@@ -21,29 +21,34 @@ import java.util.List;
 
 public class DashboardFragment extends Fragment {
 
-    private DashboardViewModel viewModel;
+    private DashboardViewModel viewModel; // ViewModel para manejar los datos
     private RecyclerView recyclerView;
     private GameAdapter adapter;
-    private List<Game> gameList = new ArrayList<>();
+    private List<Game> gameList = new ArrayList<>(); // Lista de juegos
 
     public DashboardFragment() { }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflamos el layout del fragmento
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+        // Inicializamos el RecyclerView y su configuración
         recyclerView = view.findViewById(R.id.dashboardRecyclerView);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        // Configuramos el adaptador para la lista de juegos
         adapter = new GameAdapter(gameList, this::openDetailFragment);
         recyclerView.setAdapter(adapter);
 
+        // Inicializamos el ViewModel
         viewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
+        // Observamos los datos de los juegos
         viewModel.getJuegosLiveData().observe(getViewLifecycleOwner(), games -> {
             if (games != null) {
                 gameList.clear();
@@ -54,6 +59,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        // Observamos los errores en la carga de datos
         viewModel.getErrorLiveData().observe(getViewLifecycleOwner(), errorMessage -> {
             if (errorMessage != null) {
                 Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
@@ -63,13 +69,16 @@ public class DashboardFragment extends Fragment {
         return view;
     }
 
+    // Método para abrir el fragmento de detalles al seleccionar un juego
     private void openDetailFragment(Game game) {
         DetailFragment detailFragment = new DetailFragment();
 
+        // Pasamos el título del juego al fragmento de detalles
         Bundle bundle = new Bundle();
         bundle.putString("GAME_TITLE", game.getTitulo());
         detailFragment.setArguments(bundle);
 
+        // Reemplazamos el fragmento actual por el de detalles
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, detailFragment)

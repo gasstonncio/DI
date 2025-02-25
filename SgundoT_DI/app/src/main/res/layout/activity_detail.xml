@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Imagen del juego -->
+    <!-- Imagen del juego mostrado en los detalles -->
     <ImageView
         android:id="@+id/detailImage"
         android:layout_width="0dp"
@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- FloatingActionButton para marcar como favorito -->
+    <!-- Botón flotante para agregar el juego a favoritos -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/favoriteFab"
         android:layout_width="wrap_content"

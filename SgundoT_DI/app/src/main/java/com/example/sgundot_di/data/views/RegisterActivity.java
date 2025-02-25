@@ -15,17 +15,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth; // Instancia de Firebase Authentication
+    private DatabaseReference mDatabase; // Referencia a la base de datos Firebase
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Inicializamos Firebase Authentication y la base de datos
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        // Referencias a los campos de entrada del formulario de registro
         EditText nameEditText = findViewById(R.id.nameEditText);
         EditText emailEditText = findViewById(R.id.emailEditText);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
@@ -34,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText addressEditText = findViewById(R.id.addressEditText);
         Button registerButton = findViewById(R.id.registerButton);
 
+        // Evento de clic para registrar un nuevo usuario
         registerButton.setOnClickListener(v -> {
             String name = nameEditText.getText().toString();
             String email = emailEditText.getText().toString();
@@ -42,17 +45,20 @@ public class RegisterActivity extends AppCompatActivity {
             String phone = phoneEditText.getText().toString();
             String address = addressEditText.getText().toString();
 
+            // Validación de las contraseñas
             if (!password.equals(confirmPassword)) {
                 Toast.makeText(RegisterActivity.this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Crear usuario en Firebase Authentication
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             String userId = mAuth.getCurrentUser().getUid();
                             User newUser = new User(name, email, phone, address);
 
+                            // Guardamos los datos del usuario en la base de datos de Firebase
                             mDatabase.child("users").child(userId).setValue(newUser)
                                     .addOnCompleteListener(dbTask -> {
                                         if (dbTask.isSuccessful()) {
@@ -70,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    // Clase interna para representar a un usuario
     private static class User {
         public String name;
         public String email;

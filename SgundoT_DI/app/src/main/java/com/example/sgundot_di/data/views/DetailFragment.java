@@ -26,6 +26,7 @@ import com.squareup.picasso.Picasso;
 
 public class DetailFragment extends Fragment {
 
+    // Variables para manejar la interfaz y los datos del juego
     private String gameTitle;
     private TextView titleTextView, descriptionTextView;
     private ImageView imageView;
@@ -34,36 +35,43 @@ public class DetailFragment extends Fragment {
     private DatabaseReference favoritesReference;
     private FirebaseAuth auth;
     private FavoritesViewModel favoritesViewModel;
-    private boolean isFavorite = false;
+    private boolean isFavorite = false; // Estado del juego en favoritos
 
     public DetailFragment() { }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflamos el layout del fragmento
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
 
+        // Inicializamos las vistas
         titleTextView = view.findViewById(R.id.detailTitle);
         descriptionTextView = view.findViewById(R.id.detailDescription);
         imageView = view.findViewById(R.id.detailImage);
         favoriteButton = view.findViewById(R.id.favoriteButton);
 
+        // Inicializamos el ViewModel para manejar los favoritos
         favoritesViewModel = new ViewModelProvider(this).get(FavoritesViewModel.class);
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
+        // Obtenemos el título del juego desde los argumentos
         if (getArguments() != null) {
             gameTitle = getArguments().getString("GAME_TITLE");
         }
 
+        // Si tenemos un título de juego válido, cargamos sus detalles
         if (gameTitle != null) {
             loadGameDetails(gameTitle);
         }
 
+        // Si el usuario está autenticado, verificamos si el juego está en favoritos
         if (user != null) {
             favoritesReference = FirebaseDatabase.getInstance().getReference("favoritos").child(user.getUid());
             checkIfFavorite(gameTitle);
 
+            // Configuramos el botón para agregar o quitar de favoritos
             favoriteButton.setOnClickListener(v -> {
                 if (isFavorite) {
                     removeFromFavorites(gameTitle);
@@ -78,6 +86,7 @@ public class DetailFragment extends Fragment {
         return view;
     }
 
+    // Método para cargar los detalles del juego desde Firebase
     private void loadGameDetails(String gameTitle) {
         databaseReference = FirebaseDatabase.getInstance().getReference("juegos");
 
@@ -91,6 +100,7 @@ public class DetailFragment extends Fragment {
                         String descripcion = gameSnapshot.child("descripcion").getValue(String.class);
                         String imagen = gameSnapshot.child("imagen").getValue(String.class);
 
+                        // Asignamos los datos obtenidos a las vistas
                         titleTextView.setText(titulo);
                         descriptionTextView.setText(descripcion);
                         Picasso.get().load(imagen).into(imageView);
@@ -107,6 +117,7 @@ public class DetailFragment extends Fragment {
         });
     }
 
+    // Método para agregar un juego a la lista de favoritos en Firebase
     private void addToFavorites(String gameTitle) {
         favoritesReference.child(gameTitle).setValue(true).addOnSuccessListener(aVoid -> {
             Toast.makeText(getContext(), "Agregado a Favoritos", Toast.LENGTH_SHORT).show();
@@ -115,6 +126,7 @@ public class DetailFragment extends Fragment {
         }).addOnFailureListener(e -> Toast.makeText(getContext(), "Error al agregar", Toast.LENGTH_SHORT).show());
     }
 
+    // Método para eliminar un juego de favoritos en Firebase
     private void removeFromFavorites(String gameTitle) {
         favoritesReference.child(gameTitle).removeValue().addOnSuccessListener(aVoid -> {
             Toast.makeText(getContext(), "Eliminado de Favoritos", Toast.LENGTH_SHORT).show();
@@ -123,6 +135,7 @@ public class DetailFragment extends Fragment {
         }).addOnFailureListener(e -> Toast.makeText(getContext(), "Error al eliminar", Toast.LENGTH_SHORT).show());
     }
 
+    // Método para verificar si un juego está en favoritos
     private void checkIfFavorite(String gameTitle) {
         favoritesReference.child(gameTitle).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
