@@ -1,0 +1,72 @@
+<!--
+
+DOCUMENTO EXPLICATIVO DEL FLUJO DE FUNCIONAMIENTO DE LA APLICACIÓN
+
+============================================================
+
+1. SplashActivity.java & activity_splash.xml
+-----------------------------------------------------------
+Función: Pantalla de inicio que muestra un logo y redirige al usuario según su estado de autenticación.
+- Si el usuario está autenticado -> MainActivity.
+- Si no está autenticado -> LoginActivity.
+
+2. LoginActivity.java & activity_login.xml
+-----------------------------------------------------------
+Función: Permite a los usuarios iniciar sesión con Firebase Authentication.
+- Contiene campos para email y contraseña.
+- Permite cambiar entre modo oscuro y claro.
+- Tiene un botón que redirige a RegisterActivity para registrarse.
+
+3. RegisterActivity.java & activity_register.xml
+-----------------------------------------------------------
+Función: Permite a los usuarios registrarse con Firebase Authentication y almacenar sus datos en Firebase Realtime Database.
+- Contiene campos para email, contraseña, nombre, teléfono y dirección.
+- Al completar el registro, redirige a LoginActivity.
+
+4. MainActivity.java & activity_main.xml
+-----------------------------------------------------------
+Función: Es la actividad principal que maneja la navegación en la app.
+- Contiene un DrawerLayout con menú lateral de navegación.
+- Maneja la selección de fragmentos: Dashboard, Favoritos y Perfil.
+- Permite cerrar sesión y redirigir al LoginActivity.
+
+5. DashboardFragment.java & fragment_dashboard.xml
+-----------------------------------------------------------
+Función: Muestra la lista de juegos disponibles en la app.
+- Usa un RecyclerView para mostrar los juegos obtenidos desde Firebase.
+- Al hacer clic en un juego, abre DetailFragment con su información.
+
+6. DetailFragment.java & fragment_detail.xml
+-----------------------------------------------------------
+Función: Muestra los detalles de un juego seleccionado.
+- Contiene una imagen, título y descripción del juego.
+- Tiene un botón para agregar/quitar el juego de la lista de favoritos.
+- Obtiene la información desde Firebase.
+
+7. FavoritesFragment.java & fragment_favorites.xml
+-----------------------------------------------------------
+Función: Muestra la lista de juegos marcados como favoritos por el usuario.
+- Obtiene la lista desde Firebase en tiempo real.
+- Permite abrir los detalles de cada juego.
+
+8. ProfileFragment.java & fragment_profile.xml
+-----------------------------------------------------------
+Función: Permite al usuario gestionar su perfil.
+- Cambiar contraseña (Firebase Authentication).
+- Habilitar o deshabilitar el modo oscuro.
+
+9. GameAdapter.java & item_game.xml
+-----------------------------------------------------------
+Función: Adaptador para la lista de juegos en RecyclerView.
+- Usa Picasso para cargar imágenes desde URLs.
+- Maneja la interacción con los juegos en Dashboard y Favoritos.
+
+10. ViewModels y Repositories
+-----------------------------------------------------------
+- FavoritesViewModel: Gestiona la lista de favoritos usando FavoritesRepository.
+- DashboardViewModel: Obtiene la lista de juegos desde DashboardRepository.
+- LoginViewModel y RegisterViewModel: Manejan autenticación con UserRepository.
+
+============================================================
+
+-->

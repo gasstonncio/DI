@@ -1,6 +1,7 @@
 package com.example.sgundot_di.data.models;
 
 public class User {
+    // Atributos del modelo de usuario
     private String uid;
     private String email;
     private String username;
@@ -9,13 +10,14 @@ public class User {
     public User() {
     }
 
+    // Constructor para inicializar un usuario con sus datos
     public User(String uid, String email, String username) {
         this.uid = uid;
         this.email = email;
         this.username = username;
     }
 
-    // Getters y setters
+    // Métodos getter y setter para acceder y modificar los atributos
     public String getUid() {
         return uid;
     }

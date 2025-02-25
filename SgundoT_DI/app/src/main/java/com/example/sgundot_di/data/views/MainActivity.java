@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // 🔹 APLICAMOS EL MODO OSCURO ANTES DE CARGAR LA UI
+        // 🔹 Aplicamos el modo oscuro antes de cargar la UI
         SharedPreferences prefs = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean("darkMode", false);
 
@@ -30,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        super.onCreate(savedInstanceState); // 🔹 Ahora llamamos a super.onCreate después de aplicar el tema
+        super.onCreate(savedInstanceState); // 🔹 Llamamos a super.onCreate después de aplicar el tema
         setContentView(R.layout.activity_main);
 
+        // 🔹 Inicializamos el DrawerLayout y NavigationView
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
 
+        // 🔹 Configuramos el listener del menú de navegación
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
 
@@ -49,21 +51,24 @@ public class MainActivity extends AppCompatActivity {
                 logoutUser();
             }
 
-            drawerLayout.closeDrawers();
+            drawerLayout.closeDrawers(); // 🔹 Cierra el menú después de seleccionar una opción
             return true;
         });
 
+        // 🔹 Si no hay un fragmento ya cargado, mostramos el Dashboard por defecto
         if (savedInstanceState == null) {
             openFragment(new DashboardFragment());
         }
     }
 
+    // 🔹 Método para reemplazar el fragmento actual por otro
     private void openFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, fragment)
                 .commit();
     }
 
+    // 🔹 Método para cerrar sesión y redirigir al usuario a la pantalla de login
     private void logoutUser() {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this, LoginActivity.class));
